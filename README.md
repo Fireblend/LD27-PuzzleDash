@@ -10,6 +10,7 @@ Download
 Download the game here: https://www.dropbox.com/s/9hdlzh2d0ks7r2h/puzzle_dash_fireblend.apk
 
 You can download a jar you can play on your PC from the submission's LD page, although I discourage it simply because it's so much more fun on a multitouch screen :)
+
 Submission page: http://www.ludumdare.com/compo/ludum-dare-27/?action=preview&uid=10166
 
 ![Title Screen](http://i.imgur.com/Pg4arxa.png)
