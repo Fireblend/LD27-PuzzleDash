@@ -4,6 +4,12 @@ Puzzle Dash: A Ludum Dare 27 game
 A repo to hold my Ludum Dare 27 Entry, which I've named **Puzzle Dash**, after the original competition's theme, "*10 seconds*". 
 For now, this is an Android game. An HTML5 and Desktop versions are pending :)
 
+
+Download
+===
+
+Download the game here:
+
 ![Title Screen](http://i.imgur.com/Pg4arxa.png)
 
 Instructions
@@ -14,6 +20,11 @@ Use 2 fingers to navigate the game area, and 1 finger to clear paths of same-col
 You have only 10 seconds to clear enough blocks and make it back to the "10 secs!" button to get another 10 seconds.
 
 There are some items hidden in the game are. Find out what they do!
+
+Screenshots!
+===
+(Coming soon!)
+
 
 About Ludum Dare
 ====
