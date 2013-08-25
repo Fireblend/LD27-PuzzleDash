@@ -7,7 +7,7 @@ For now, this is an Android game. An HTML5 and Desktop versions are pending :)
 Download
 ===
 
-Download the game here:
+Download the game here: https://www.dropbox.com/s/ru7ii3hp46p8jrn/puzzle_dash_android.apk
 
 ![Title Screen](http://i.imgur.com/Pg4arxa.png)
 
