@@ -4,7 +4,6 @@ Puzzle Dash: A Ludum Dare 27 game
 A repo to hold my Ludum Dare 27 Entry, which I've named **Puzzle Dash**, after the original competition's theme, "*10 seconds*". 
 For now, this is an Android game. An HTML5 and Desktop versions are pending :)
 
-
 Download
 ===
 
@@ -23,7 +22,7 @@ There are some items hidden in the game are. Find out what they do!
 
 Screenshots!
 ===
-(Coming soon!)
+![](http://i.imgur.com/lnBhTlm.png) ![](http://i.imgur.com/Y6jK6nt.png) ![](http://i.imgur.com/MOckmeO.png)
 
 
 About Ludum Dare
