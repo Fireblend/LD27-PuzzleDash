@@ -10,7 +10,9 @@ Instructions
 ===
 
 Use 2 fingers to navigate the game area, and 1 finger to clear paths of same-colored blocks!
+
 You have only 10 seconds to clear enough blocks and make it back to the "10 secs!" button to get another 10 seconds.
+
 There are some items hidden in the game are. Find out what they do!
 
 About Ludum Dare
