@@ -185,15 +185,15 @@ public class GameScreen  implements Screen, InputProcessor{
 		gameOverTexture = new Texture(Gdx.files.internal("data/end.png"));
 		menuTexture = new Texture(Gdx.files.internal("data/main.png"));
 		
-		buttonSnd = Gdx.audio.newSound(Gdx.files.internal("data/Blip_Select7.wav"));
-		comboSnd = Gdx.audio.newSound(Gdx.files.internal("data/Pickup_Coin8.wav"));
-		comboSnd2 = Gdx.audio.newSound(Gdx.files.internal("data/Pickup_Coin6.wav"));
-		readySnd = Gdx.audio.newSound(Gdx.files.internal("data/Powerup9.wav"));
-		clockTickSnd = Gdx.audio.newSound(Gdx.files.internal("data/Blip_Select10.wav"));
-		endSnd = Gdx.audio.newSound(Gdx.files.internal("data/Blip_Select12.wav"));
+		buttonSnd = Gdx.audio.newSound(Gdx.files.internal("data/Blip_Select7.mp3"));
+		comboSnd = Gdx.audio.newSound(Gdx.files.internal("data/Pickup_Coin8.mp3"));
+		comboSnd2 = Gdx.audio.newSound(Gdx.files.internal("data/Pickup_Coin6.mp3"));
+		readySnd = Gdx.audio.newSound(Gdx.files.internal("data/Powerup9.mp3"));
+		clockTickSnd = Gdx.audio.newSound(Gdx.files.internal("data/Blip_Select10.mp3"));
+		endSnd = Gdx.audio.newSound(Gdx.files.internal("data/Blip_Select12.mp3"));
 
-		menuMusic = Gdx.audio.newMusic(Gdx.files.internal("data/menuMusic.wav"));
-		gameMusic = Gdx.audio.newMusic(Gdx.files.internal("data/gameMusic.wav"));
+		menuMusic = Gdx.audio.newMusic(Gdx.files.internal("data/menuMusic.mp3"));
+		gameMusic = Gdx.audio.newMusic(Gdx.files.internal("data/gameMusic.mp3"));
 		
 		 font = new BitmapFont(Gdx.files.internal("data/font.fnt"),
 		         Gdx.files.internal("data/font.png"), false);
