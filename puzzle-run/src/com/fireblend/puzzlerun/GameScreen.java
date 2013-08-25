@@ -6,6 +6,7 @@ import java.util.Random;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
@@ -76,6 +77,7 @@ public class GameScreen  implements Screen, InputProcessor{
 	Texture menuTexture;
 	Texture timerTexture;
 	Texture scoreTexture;
+	Texture helpTexture;
 
 	Sound comboSnd;
 	Sound comboSnd2;
@@ -102,6 +104,10 @@ public class GameScreen  implements Screen, InputProcessor{
 	private boolean end;
 	private boolean menu = true;
 	private boolean released = true;
+
+	private boolean navigation = false;
+
+	private boolean howto = false;
 	
 	//Initializes the matrix for a new level
 	public void initGameArea(){
@@ -169,40 +175,43 @@ public class GameScreen  implements Screen, InputProcessor{
 	
 	public GameScreen(PuzzleRun game){
 		this.game = game;
-		
-		yBlock = new Texture(Gdx.files.internal("data/yellow.png"));
-		gBlock = new Texture(Gdx.files.internal("data/green.png"));
-		bBlock = new Texture(Gdx.files.internal("data/blue.png"));
-		pBlock = new Texture(Gdx.files.internal("data/pink.png"));
-		vBlock = new Texture(Gdx.files.internal("data/purple.png"));
-		transBlock = new Texture(Gdx.files.internal("data/trans.png"));
-		greyBlock = new Texture(Gdx.files.internal("data/grey.png"));
-		button = new Texture(Gdx.files.internal("data/button.png"));
-		bombBlock = new Texture(Gdx.files.internal("data/bomb.png"));
-		timerTexture = new Texture(Gdx.files.internal("data/timer.png"));
-		scoreTexture = new Texture(Gdx.files.internal("data/score.png"));
-		plusBlock = new Texture(Gdx.files.internal("data/plus.png"));
-		gameOverTexture = new Texture(Gdx.files.internal("data/end.png"));
-		menuTexture = new Texture(Gdx.files.internal("data/main.png"));
-		
-		buttonSnd = Gdx.audio.newSound(Gdx.files.internal("data/Blip_Select7.mp3"));
-		comboSnd = Gdx.audio.newSound(Gdx.files.internal("data/Pickup_Coin8.mp3"));
-		comboSnd2 = Gdx.audio.newSound(Gdx.files.internal("data/Pickup_Coin6.mp3"));
-		readySnd = Gdx.audio.newSound(Gdx.files.internal("data/Powerup9.mp3"));
-		clockTickSnd = Gdx.audio.newSound(Gdx.files.internal("data/Blip_Select10.mp3"));
-		endSnd = Gdx.audio.newSound(Gdx.files.internal("data/Blip_Select12.mp3"));
 
-		menuMusic = Gdx.audio.newMusic(Gdx.files.internal("data/menuMusic.mp3"));
-		gameMusic = Gdx.audio.newMusic(Gdx.files.internal("data/gameMusic.mp3"));
-		
-		 font = new BitmapFont(Gdx.files.internal("data/font.fnt"),
-		         Gdx.files.internal("data/font.png"), false);
-		 fontWhite = new BitmapFont(Gdx.files.internal("data/fontWhite.fnt"),
-		         Gdx.files.internal("data/fontWhite.png"), false);
+			yBlock = new Texture(Gdx.files.internal("data/yellow.png"));
+			gBlock = new Texture(Gdx.files.internal("data/green.png"));
+			bBlock = new Texture(Gdx.files.internal("data/blue.png"));
+			pBlock = new Texture(Gdx.files.internal("data/pink.png"));
+			vBlock = new Texture(Gdx.files.internal("data/purple.png"));
+			transBlock = new Texture(Gdx.files.internal("data/trans.png"));
+			greyBlock = new Texture(Gdx.files.internal("data/grey.png"));
+			button = new Texture(Gdx.files.internal("data/button.png"));
+			bombBlock = new Texture(Gdx.files.internal("data/bomb.png"));
+			timerTexture = new Texture(Gdx.files.internal("data/timer.png"));
+			scoreTexture = new Texture(Gdx.files.internal("data/score.png"));
+			plusBlock = new Texture(Gdx.files.internal("data/plus.png"));
+			gameOverTexture = new Texture(Gdx.files.internal("data/end.png"));
+			menuTexture = new Texture(Gdx.files.internal("data/main.png"));
+			helpTexture = new Texture(Gdx.files.internal("data/howto.png"));
+			
+			buttonSnd = Gdx.audio.newSound(Gdx.files.internal("data/Blip_Select7.mp3"));
+			comboSnd = Gdx.audio.newSound(Gdx.files.internal("data/Pickup_Coin8.mp3"));
+			comboSnd2 = Gdx.audio.newSound(Gdx.files.internal("data/Pickup_Coin6.mp3"));
+			readySnd = Gdx.audio.newSound(Gdx.files.internal("data/Powerup9.mp3"));
+			clockTickSnd = Gdx.audio.newSound(Gdx.files.internal("data/Blip_Select10.mp3"));
+			endSnd = Gdx.audio.newSound(Gdx.files.internal("data/Blip_Select12.mp3"));
+	
+			menuMusic = Gdx.audio.newMusic(Gdx.files.internal("data/menuMusic.mp3"));
+			gameMusic = Gdx.audio.newMusic(Gdx.files.internal("data/gameMusic.mp3"));
+			
+			font = new BitmapFont(Gdx.files.internal("data/font.fnt"),
+			         Gdx.files.internal("data/font.png"), false);
+			fontWhite = new BitmapFont(Gdx.files.internal("data/fontWhite.fnt"),
+			         Gdx.files.internal("data/fontWhite.png"), false);
 	}
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		
+		
 		released = true;
 		if(end || menu){return false;}
 		if(pointer == 0 || pointer == 1){
@@ -223,30 +232,27 @@ public class GameScreen  implements Screen, InputProcessor{
 		int heightCorrect2 = (int) (screenY*800.0/Gdx.graphics.getHeight());
 		Gdx.app.log("Adj", screenX/widthCorrect+","+heightCorrect2);
 		if(menu && released){
+			if(howto){
+				howto = false;
+				released = false;
+				return false;
+			}
 			Rectangle startButton;
+			Rectangle howtoButton;
 			Rectangle quitButton;
-			if(Gdx.app.getType() == ApplicationType.Android){
-				startButton = new Rectangle(
-						86,
-						307,
-						310,100);
+			startButton = new Rectangle(
+					80,
+					290,
+					300,90);
+			howtoButton = new Rectangle(
+					60,
+					415,
+					380,80);
 
-				quitButton = new Rectangle(
-						110,
-						450,
-						280,100);
-			}
-			else{
-				startButton = new Rectangle(
-					86,
-					307,
-					310,100);
-
-				quitButton = new Rectangle(
+			quitButton = new Rectangle(
 					110,
-					450,
-					280,100);
-			}
+					525,
+					260,90);
 			if(startButton.contains(screenX/widthCorrect, heightCorrect2)){
 				buttonSnd.play((float) 0.6);
 				menu = false;
@@ -257,9 +263,12 @@ public class GameScreen  implements Screen, InputProcessor{
 				gameMusic.setLooping(true);
 				gameMusic.play();
 			}
-			if(quitButton.contains(screenX/widthCorrect, heightCorrect2)){
+			else if(quitButton.contains(screenX/widthCorrect, heightCorrect2)){
 				buttonSnd.play((float) 0.6);
 				Gdx.app.exit();
+			}
+			else if(howtoButton.contains(screenX/widthCorrect, heightCorrect2)){
+				howto = true;
 			}
 			released = false;
 		}
@@ -336,7 +345,7 @@ public class GameScreen  implements Screen, InputProcessor{
 			return false;
 		}
 		
-		if(pointer == 1){
+		if(pointer == 1 || navigation == true){
 			if(dragX == null){
 				
 				dragX = screenX;
@@ -581,10 +590,16 @@ public class GameScreen  implements Screen, InputProcessor{
 					   Gdx.graphics.getHeight()/2);
 		}
 		else if(menu){
-			batch.draw(menuTexture,20*widthCorrect, 120*widthCorrect, 
+			if(!howto){
+				batch.draw(menuTexture,20*widthCorrect, 70*heightCorrect, 
 					menuTexture.getWidth()*widthCorrect,
 					menuTexture.getHeight()*heightCorrect);
-
+			}
+			else{
+				batch.draw(helpTexture,20*widthCorrect, 70*heightCorrect, 
+						helpTexture.getWidth()*widthCorrect,
+						helpTexture.getHeight()*heightCorrect);
+			}
 		}
 		
 		batch.end();
@@ -633,9 +648,22 @@ public class GameScreen  implements Screen, InputProcessor{
 	@Override
 	public void dispose() {}
 	@Override
-	public boolean keyDown(int keycode) {return false;}
+	public boolean keyDown(int keycode) {
+		if(Gdx.app.getType() != ApplicationType.Android && (keycode == Input.Keys.Z || keycode == Input.Keys.SPACE || keycode == Input.Keys.SHIFT_LEFT)){
+
+			Gdx.app.log("Adj","NAV TRUE");
+			navigation=true;
+		}
+		return false;
+	}
 	@Override
-	public boolean keyUp(int keycode) {return false;}
+	public boolean keyUp(int keycode) {
+		if(Gdx.app.getType() != ApplicationType.Android && (keycode == Input.Keys.Z || keycode == Input.Keys.SPACE || keycode == Input.Keys.SHIFT_LEFT)){
+			Gdx.app.log("Adj","NAV FALSE");
+			navigation=false;
+		}
+		return false;
+	}
 	@Override
 	public boolean keyTyped(char character) {return false;}
 
