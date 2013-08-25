@@ -220,33 +220,34 @@ public class GameScreen  implements Screen, InputProcessor{
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		Gdx.app.log("Adj", screenX/widthCorrect+","+screenY/heightCorrect);
+		int heightCorrect2 = (int) (screenY*800.0/Gdx.graphics.getHeight());
+		Gdx.app.log("Adj", screenX/widthCorrect+","+heightCorrect2);
 		if(menu && released){
 			Rectangle startButton;
 			Rectangle quitButton;
 			if(Gdx.app.getType() == ApplicationType.Android){
 				startButton = new Rectangle(
-						85,
-						245,
-						310,110);
+						86,
+						307,
+						310,100);
 
 				quitButton = new Rectangle(
-						102,
-						370,
+						110,
+						450,
 						280,100);
 			}
 			else{
 				startButton = new Rectangle(
-					91,
-					329,
-					310,110);
+					86,
+					307,
+					310,100);
 
 				quitButton = new Rectangle(
-					102,
-					460,
+					110,
+					450,
 					280,100);
 			}
-			if(startButton.contains(screenX/widthCorrect, screenY/heightCorrect)){
+			if(startButton.contains(screenX/widthCorrect, heightCorrect2)){
 				buttonSnd.play((float) 0.6);
 				menu = false;
 				initLevel();
@@ -256,7 +257,7 @@ public class GameScreen  implements Screen, InputProcessor{
 				gameMusic.setLooping(true);
 				gameMusic.play();
 			}
-			if(quitButton.contains(screenX/widthCorrect, screenY/heightCorrect)){
+			if(quitButton.contains(screenX/widthCorrect, heightCorrect2)){
 				buttonSnd.play((float) 0.6);
 				Gdx.app.exit();
 			}
@@ -267,26 +268,23 @@ public class GameScreen  implements Screen, InputProcessor{
 			Rectangle quitButton;
 			if(Gdx.app.getType() == ApplicationType.Android){
 				retryButton = new Rectangle(
-						105,
-						450,
-						100,65);
+						85,
+						490,
+						120,60);
 				
 				quitButton = new Rectangle(
-						283,
-						451,
-						75,
-						65);
+						283,505,100,35);
 			}
 			else{
 				retryButton = new Rectangle(
-						105,
-						500,
-						100,40);
+						85,
+						490,
+						120,60);
 				
 				quitButton = new Rectangle(
-						283,511,75,35);
+						283,505,100,35);
 			}
-			if(quitButton.contains(screenX/widthCorrect, screenY/heightCorrect)){
+			if(quitButton.contains(screenX/widthCorrect, heightCorrect2)){
 				buttonSnd.play((float) 0.6);
 				end = false;
 				menu = true;
@@ -294,7 +292,7 @@ public class GameScreen  implements Screen, InputProcessor{
 				menuMusic.setLooping(true);
 				menuMusic.play();
 			}
-			else if(retryButton.contains(screenX/widthCorrect, screenY/heightCorrect)){
+			else if(retryButton.contains(screenX/widthCorrect, heightCorrect2)){
 				buttonSnd.play((float) 0.6);
 				initLevel();
 				end = false;
