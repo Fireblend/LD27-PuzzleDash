@@ -7,7 +7,7 @@ For now, this is an Android game. An HTML5 and Desktop versions are pending :)
 Download
 ===
 
-Download the game here: https://www.dropbox.com/s/9hdlzh2d0ks7r2h/puzzle_dash_fireblend.apk
+Grab the game here: https://play.google.com/store/apps/details?id=com.fireblend.puzzledash
 
 You can download a jar you can play on your PC from the submission's LD page, although I discourage it simply because it's so much more fun on a multitouch screen :)
 
